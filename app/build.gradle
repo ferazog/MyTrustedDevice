@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -8,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.guerrero.mytrusteddevice"
-        minSdk 21
+        minSdk 23
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -29,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -40,4 +46,41 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation "com.google.firebase:firebase-perf:20.0.3"
+    implementation "com.google.firebase:firebase-analytics:19.0.2"
+    implementation "com.google.firebase:firebase-messaging:22.0.0"
+    implementation 'com.google.firebase:firebase-core:19.0.2'
+
+    // Twilio
+    implementation 'com.twilio:twilio-verify-android:0.4.0'
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Fragment Lifecycle
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
+
+    // Material design
+    implementation 'com.google.android.material:material:1.4.0'
+
+    // logging interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.0'
+
+    // Data store
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
