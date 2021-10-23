@@ -1,4 +1,4 @@
-package com.guerrero.mytrusteddevice.model.web
+package com.guerrero.mytrusteddevice.network
 
 import com.google.gson.annotations.SerializedName
 import com.guerrero.mytrusteddevice.shared.AccessToken

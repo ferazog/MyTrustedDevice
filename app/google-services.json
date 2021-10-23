@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "629219859165",
+    "project_id": "my-trusted-device",
+    "storage_bucket": "my-trusted-device.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629219859165:android:f2f922e91ebb4573175934",
+        "android_client_info": {
+          "package_name": "com.guerrero.mytrusteddevice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629219859165-kgmqpm25jrcacqe7g6uaatk25sv4a9lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn6R_VKfgVF1WaWa1vCEQHfxHVWDakEIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629219859165-kgmqpm25jrcacqe7g6uaatk25sv4a9lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

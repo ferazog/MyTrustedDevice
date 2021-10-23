@@ -1,8 +1,10 @@
 package com.guerrero.mytrusteddevice.di
 
 import android.content.Context
-import com.guerrero.mytrusteddevice.model.local.LocalStorageHelper
-import com.guerrero.mytrusteddevice.model.local.LocalStorageHelperImpl
+import com.guerrero.mytrusteddevice.preferences.PreferencesStorage
+import com.guerrero.mytrusteddevice.network.CookiesGiverInterceptor
+import com.guerrero.mytrusteddevice.network.CookiesReceiverInterceptor
+import com.guerrero.mytrusteddevice.preferences.PreferencesStorageImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,19 +49,19 @@ object AppModule {
     }
 
     @Provides
-    fun provideCookieReceiverInterceptor(localStorageHelper: LocalStorageHelper): CookiesReceiverInterceptor {
-        return CookiesReceiverInterceptor(localStorageHelper)
+    fun provideCookieReceiverInterceptor(preferencesStorage: PreferencesStorage): CookiesReceiverInterceptor {
+        return CookiesReceiverInterceptor(preferencesStorage)
     }
 
     @Provides
-    fun provideCookieGiverInterceptor(localStorageHelper: LocalStorageHelper): CookiesGiverInterceptor {
-        return CookiesGiverInterceptor(localStorageHelper)
+    fun provideCookieGiverInterceptor(preferencesStorage: PreferencesStorage): CookiesGiverInterceptor {
+        return CookiesGiverInterceptor(preferencesStorage)
     }
 
     @Provides
     fun provideLocalStorageHelper(
         @ApplicationContext context: Context
-    ): LocalStorageHelper {
-        return LocalStorageHelperImpl(context)
+    ): PreferencesStorage {
+        return PreferencesStorageImpl(context)
     }
 }

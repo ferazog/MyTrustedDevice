@@ -1,8 +1,9 @@
 package com.guerrero.mytrusteddevice.di
 
-import com.guerrero.mytrusteddevice.model.repository.MyRepository
-import com.guerrero.mytrusteddevice.model.repository.MyRepositoryImpl
-import com.guerrero.mytrusteddevice.model.web.MyService
+import com.guerrero.mytrusteddevice.network.MyService
+import com.guerrero.mytrusteddevice.preferences.PreferencesStorage
+import com.guerrero.mytrusteddevice.repository.MyRepository
+import com.guerrero.mytrusteddevice.repository.MyRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +20,7 @@ object MyModule {
     }
 
     @Provides
-    fun provideRepository(service: MyService): MyRepository {
-        return MyRepositoryImpl(service)
+    fun provideRepository(service: MyService, preferences: PreferencesStorage): MyRepository {
+        return MyRepositoryImpl(service, preferences)
     }
 }

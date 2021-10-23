@@ -1,4 +1,4 @@
-package com.guerrero.mytrusteddevice.model.web
+package com.guerrero.mytrusteddevice.network
 
 import retrofit2.http.*
 

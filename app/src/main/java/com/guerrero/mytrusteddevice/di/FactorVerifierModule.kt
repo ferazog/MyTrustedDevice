@@ -1,6 +1,8 @@
 package com.guerrero.mytrusteddevice.di
 
 import android.content.Context
+import com.guerrero.mytrusteddevice.factorverifier.FactorVerifier
+import com.guerrero.mytrusteddevice.factorverifier.TwilioFactorVerifier
 import com.twilio.verify.TwilioVerify
 import dagger.Module
 import dagger.Provides
@@ -11,11 +13,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object FactorVerifier {
+object FactorVerifierModule {
 
     @Provides
     @Singleton
-    fun provideTwilioVerify(@ApplicationContext context: Context): TwilioVerify {
-        return TwilioVerify.Builder(context).build()
+    fun provideTwilioFactorVerifier(@ApplicationContext context: Context): FactorVerifier {
+        return TwilioFactorVerifier(
+            TwilioVerify.Builder(context).build()
+        )
     }
 }

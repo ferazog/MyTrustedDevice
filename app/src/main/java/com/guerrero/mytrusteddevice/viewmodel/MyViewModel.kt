@@ -4,13 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.guerrero.mytrusteddevice.model.repository.MyRepository
-import com.guerrero.mytrusteddevice.shared.AccessToken
+import com.guerrero.mytrusteddevice.factorverifier.FactorVerifier
+import com.guerrero.mytrusteddevice.repository.MyRepository
+import com.guerrero.mytrusteddevice.shared.RegisterInfo
 import com.guerrero.mytrusteddevice.shared.User
 import com.guerrero.mytrusteddevice.view.ViewState
-import com.twilio.verify.TwilioVerify
-import com.twilio.verify.models.Factor
-import com.twilio.verify.models.PushFactorPayload
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,12 +16,18 @@ import javax.inject.Inject
 
 class MyViewModel @Inject constructor(
     private val repository: MyRepository,
-    private val twilioVerify: TwilioVerify
+    private val factorVerifier: FactorVerifier
 ) : ViewModel() {
 
-    private val viewState = MutableLiveData<ViewState>()
+    private val viewState = MutableLiveData<ViewState>().apply { value = ViewState.Normal }
 
     fun getViewStateObservable(): LiveData<ViewState> = viewState
+
+    private val isDeviceRegistered = MutableLiveData<Boolean>().apply { value = false }
+
+    fun getDeviceRegisteredObservable(): LiveData<Boolean> = isDeviceRegistered
+
+    private var factorSid = ""
 
     fun registerUser(user: User, pushToken: String) {
         viewState.value = ViewState.Loading
@@ -31,11 +35,12 @@ class MyViewModel @Inject constructor(
             try {
                 withContext(Dispatchers.IO) {
                     val accessToken = repository.getAccessToken(user)
-                    val factorPayload = buildFactorPayload(accessToken, pushToken)
-                    twilioVerify.createFactor(
-                        factorPayload,
-                        { factor ->
-                            callRegisterEndpoint(factor)
+                    factorVerifier.createFactor(
+                        accessToken,
+                        pushToken,
+                        { registerInfo ->
+                            factorSid = registerInfo.factorSid
+                            callRegisterEndpoint(registerInfo)
                         },
                         { exception ->
                             throw exception
@@ -49,28 +54,31 @@ class MyViewModel @Inject constructor(
         }
     }
 
-    private fun buildFactorPayload(
-        accessToken: AccessToken,
-        pushToken: String
-    ): PushFactorPayload {
-        return accessToken.run {
-            PushFactorPayload(
-                friendlyName = android.os.Build.MODEL,
-                serviceSid = serviceSid,
-                identity = identity,
-                pushToken = pushToken,
-                accessToken = token
-            )
+    private fun callRegisterEndpoint(registerInfo: RegisterInfo) {
+        viewModelScope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    repository.register(registerInfo)
+                }
+                viewState.postValue(ViewState.Success)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                viewState.postValue(ViewState.Error(e.message.toString()))
+            }
         }
     }
 
-    private fun callRegisterEndpoint(factor: Factor) {
+    fun getPendingChallenges() {
+        factorVerifier.getPendingChallenges(factorSid, {}, {})
+    }
+
+    fun checkDeviceRegistered() {
         viewModelScope.launch {
             try {
-                val isDone = withContext(Dispatchers.IO) {
-                    repository.register(factor.identity, factor.sid)
+                val registered = withContext(Dispatchers.IO) {
+                    repository.isDeviceRegistered()
                 }
-                viewState.postValue(ViewState.Success(isDone))
+                isDeviceRegistered.postValue(registered)
             } catch (e: Exception) {
                 e.printStackTrace()
                 viewState.postValue(ViewState.Error(e.message.toString()))
