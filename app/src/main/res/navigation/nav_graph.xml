@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.guerrero.mytrusteddevice.view.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        android:name="com.guerrero.mytrusteddevice.view.register.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_challengesFragment"
             app:destination="@id/challengesFragment"
@@ -20,9 +20,9 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.guerrero.mytrusteddevice.view.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:name="com.guerrero.mytrusteddevice.view.register.HomeFragment"
+        android:label="@string/welcome"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -41,6 +41,5 @@
     <fragment
         android:id="@+id/challengesFragment"
         android:name="com.guerrero.mytrusteddevice.view.challenges.ChallengesFragment"
-        android:label="fragment_challenges"
-        tools:layout="@layout/fragment_challenges" />
+        android:label="@string/challenges" />
 </navigation>

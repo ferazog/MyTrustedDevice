@@ -17,4 +17,8 @@
     <string name="open">Open</string>
     <string name="tip_swipe_to_refresh">Tip: swipe to refresh the challenges.</string>
     <string name="dismiss">Dismiss</string>
+    <string name="logout">Logout</string>
+    <string name="register">Register</string>
+    <string name="welcome">Welcome</string>
+    <string name="challenges">Challenges</string>
 </resources>

@@ -3,7 +3,6 @@ package com.guerrero.mytrusteddevice.factorverifier
 import android.os.Build
 import com.guerrero.mytrusteddevice.shared.AccessToken
 import com.guerrero.mytrusteddevice.shared.ChallengeWrapper
-import com.guerrero.mytrusteddevice.shared.DetailWrapper
 import com.guerrero.mytrusteddevice.shared.RegisterInfo
 import com.twilio.verify.TwilioVerify
 import com.twilio.verify.models.*
@@ -24,7 +23,7 @@ class TwilioFactorVerifier(
         twilioVerify.createFactor(
             factorPayload,
             { factor -> verifyFactor(factor.sid, onSuccess, onError) },
-            { exception -> onError(exception) }
+            { e -> onError(e) }
         )
     }
 
@@ -90,7 +89,7 @@ class TwilioFactorVerifier(
                 order = ChallengeListOrder.Desc
             ),
             { challengeList -> onSuccess(challengeList.toChallengeWrapperList()) },
-            { exception -> exception.printStackTrace() }
+            { e -> onError(e) }
         )
     }
 }

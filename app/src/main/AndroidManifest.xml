@@ -14,12 +14,16 @@
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
+            <nav-graph android:value="@navigation/nav_graph" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.challenges.ChallengesActivity" />
+        <activity android:name=".view.details.ChallengeDetailsActivity" />
 
         <service android:name=".push.MyFirebaseMessagingService">
             <intent-filter>

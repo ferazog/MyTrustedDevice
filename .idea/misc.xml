@@ -5,14 +5,19 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/drawable/ic_check.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/drawable/ic_password.xml" value="0.17291666666666666" />
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.17291666666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35446685878962536" />
+        <entry key="app/src/main/res/layout/activity_challenges.xml" value="0.17487179487179488" />
+        <entry key="app/src/main/res/layout/activity_details.xml" value="0.17487179487179488" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3426470588235294" />
         <entry key="app/src/main/res/layout/card_swipe_to_refresh_tip.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_challenges.xml" value="0.17487179487179488" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/viewholder_challenge.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/menu_challenges.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.17487179487179488" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.1" />
       </map>
     </option>

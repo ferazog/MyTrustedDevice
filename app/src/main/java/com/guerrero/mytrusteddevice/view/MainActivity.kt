@@ -4,30 +4,53 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.guerrero.mytrusteddevice.R
 import com.guerrero.mytrusteddevice.databinding.ActivityMainBinding
-import com.guerrero.mytrusteddevice.di.ViewModelFactory
-import com.guerrero.mytrusteddevice.viewmodel.MyViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    @Inject
-    lateinit var factory: ViewModelFactory
-
-    private val viewModel: MyViewModel by viewModels { factory }
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         createChannel()
+        setupToolbarOptions()
+    }
+
+    private fun setupToolbarOptions() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
+            when (destination.id) {
+                controller.graph.startDestination -> {
+                    menu?.findItem(R.id.logout)?.isVisible = false
+                }
+                R.id.registerFragment -> {
+                    menu?.findItem(R.id.logout)?.isVisible = false
+                }
+                else -> {
+                    menu?.findItem(R.id.logout)?.isVisible = true
+                }
+            }
+        }
+        NavigationUI.setupActionBarWithNavController(this, navController)
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(false)
+            setHomeButtonEnabled(false)
+        }
     }
 
     private fun createChannel() {
@@ -43,6 +66,22 @@ class MainActivity : AppCompatActivity() {
                 NotificationManager::class.java
             )
             notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        this.menu = menu
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                findNavController(R.id.navHostFragment).navigate(R.id.registerFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
