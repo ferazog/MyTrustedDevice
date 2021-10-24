@@ -117,4 +117,34 @@ class TwilioFactorVerifier(
             { onError(it) }
         )
     }
+
+    override fun approveChallenge(
+        challengeId: String,
+        factorSid: String,
+        onSuccess: () -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        twilioVerify.updateChallenge(
+            UpdatePushChallengePayload(
+                factorSid, challengeId, ChallengeStatus.Approved
+            ),
+            { onSuccess() },
+            { exception -> onError(exception) }
+        )
+    }
+
+    override fun denyChallenge(
+        challengeId: String,
+        factorSid: String,
+        onSuccess: () -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        twilioVerify.updateChallenge(
+            UpdatePushChallengePayload(
+                factorSid, challengeId, ChallengeStatus.Denied
+            ),
+            { onSuccess() },
+            { exception -> onError(exception) }
+        )
+    }
 }

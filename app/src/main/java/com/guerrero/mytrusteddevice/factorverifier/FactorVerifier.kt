@@ -29,4 +29,19 @@ interface FactorVerifier {
         onSuccess: (ChallengeWrapper) -> Unit,
         onError: (Exception) -> Unit
     )
+
+    fun approveChallenge(
+        challengeId: String,
+        factorSid: String,
+        onSuccess: () -> Unit,
+        onError: (Exception) -> Unit
+    )
+
+    fun denyChallenge(
+        challengeId: String,
+        factorSid: String,
+        onSuccess: () -> Unit,
+        onError: (Exception) -> Unit
+    )
+
 }
