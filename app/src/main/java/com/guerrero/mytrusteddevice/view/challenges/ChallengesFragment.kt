@@ -8,7 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.guerrero.mytrusteddevice.databinding.FragmentChallengesBinding
 import com.guerrero.mytrusteddevice.di.ViewModelFactory
@@ -25,7 +26,7 @@ class ChallengesFragment : Fragment(), CardListener {
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val viewModel: ChallengesViewModel by viewModels { factory }
+    private val viewModel: ChallengesViewModel by activityViewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +42,14 @@ class ChallengesFragment : Fragment(), CardListener {
         binding.swipeToRefreshContainer.setOnRefreshListener {
             viewModel.getPendingChallenges()
         }
+        observeHideTip()
+        viewModel.validateHideTip()
         binding.tipCard.btnDismiss.setOnClickListener { closeTipCard() }
         observeViewState()
         viewModel.getPendingChallenges()
+        binding.btnFoo.setOnClickListener {
+            viewModel.foo()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -60,7 +66,16 @@ class ChallengesFragment : Fragment(), CardListener {
                         binding.tipCard.root.visibility = View.GONE
                     }
                 })
+            viewModel.dismissTip()
         }
+    }
+
+    private fun observeHideTip() {
+        viewModel.getHideTipObservable().observe(viewLifecycleOwner, {hideTip->
+            if(!hideTip) {
+                binding.tipCard.root.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun observeViewState() {
@@ -69,6 +84,7 @@ class ChallengesFragment : Fragment(), CardListener {
                 is ChallengesViewState.Loading -> setStateLoading()
                 is ChallengesViewState.Error -> setStateError(viewState.message)
                 is ChallengesViewState.Success -> showChallenges(viewState.challenges)
+                is ChallengesViewState.Logout -> logout()
             }
         })
     }
@@ -87,6 +103,11 @@ class ChallengesFragment : Fragment(), CardListener {
         with(binding.recyclerView) {
             (adapter as? ChallengesAdapter)?.submitList(challenges)
         }
+    }
+
+    private fun logout() {
+        val action = ChallengesFragmentDirections.actionChallengesFragmentToHomeFragment()
+        binding.root.findNavController().navigate(action)
     }
 
     override fun onActionClicked(challenge: ChallengeWrapper) {

@@ -22,8 +22,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.challenges.ChallengesActivity" />
-        <activity android:name=".view.details.ChallengeDetailsActivity" />
+        <activity
+            android:name=".view.details.ChallengeDetailsActivity"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+            />
 
         <service android:name=".push.MyFirebaseMessagingService">
             <intent-filter>

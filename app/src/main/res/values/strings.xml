@@ -21,4 +21,11 @@
     <string name="register">Register</string>
     <string name="welcome">Welcome</string>
     <string name="challenges">Challenges</string>
+    <string name="message">Message</string>
+    <string name="details">Details</string>
+    <string name="date">Date</string>
+    <string name="expiration_date">Expiration Date</string>
+    <string name="status">Status</string>
+    <string name="approve">Approve</string>
+    <string name="deny">Deny</string>
 </resources>

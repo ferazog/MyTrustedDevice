@@ -20,4 +20,13 @@ interface FactorVerifier {
         onSuccess: (List<ChallengeWrapper>) -> Unit,
         onError: (Exception) -> Unit
     )
+
+    fun foo(factorSid: String)
+
+    fun getChallenge(
+        challengeId: String,
+        factorSid: String,
+        onSuccess: (ChallengeWrapper) -> Unit,
+        onError: (Exception) -> Unit
+    )
 }

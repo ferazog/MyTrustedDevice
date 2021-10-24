@@ -16,7 +16,9 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -36,10 +38,18 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/challengesFragment"
         android:name="com.guerrero.mytrusteddevice.view.challenges.ChallengesFragment"
-        android:label="@string/challenges" />
+        android:label="@string/challenges">
+        <action
+            android:id="@+id/action_challengesFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/challengesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

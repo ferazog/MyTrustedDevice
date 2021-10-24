@@ -12,6 +12,7 @@
         android:padding="@dimen/padding_normal">
 
         <include
+            android:visibility="gone"
             android:id="@+id/tipCard"
             layout="@layout/card_swipe_to_refresh_tip" />
 
@@ -27,5 +28,15 @@
             app:layout_constraintTop_toBottomOf="@id/tipCard"
             tools:listitem="@layout/item_challenge" />
 
+        <Button
+            android:id="@+id/btnFoo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="foo"
+app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

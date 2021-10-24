@@ -6,13 +6,16 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.guerrero.mytrusteddevice.R
 import com.guerrero.mytrusteddevice.databinding.ActivityMainBinding
+import com.guerrero.mytrusteddevice.di.ViewModelFactory
+import com.guerrero.mytrusteddevice.view.challenges.ChallengesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -20,6 +23,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var menu: Menu? = null
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: ChallengesViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +53,6 @@ class MainActivity : AppCompatActivity() {
                     menu?.findItem(R.id.logout)?.isVisible = true
                 }
             }
-        }
-        NavigationUI.setupActionBarWithNavController(this, navController)
-        supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(false)
-            setHomeButtonEnabled(false)
         }
     }
 
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.logout -> {
-                findNavController(R.id.navHostFragment).navigate(R.id.registerFragment)
+                viewModel.logout()
                 true
             }
             else -> super.onOptionsItemSelected(item)
