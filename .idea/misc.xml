@@ -16,6 +16,8 @@
         <entry key="app/src/main/res/layout/fragment_challenges.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_challenge.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_empty_state.xml" value="0.125" />
         <entry key="app/src/main/res/layout/viewholder_challenge.xml" value="0.335" />
         <entry key="app/src/main/res/menu/menu_challenges.xml" value="0.335" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.17487179487179488" />

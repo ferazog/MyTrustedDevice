@@ -21,8 +21,6 @@ interface FactorVerifier {
         onError: (Exception) -> Unit
     )
 
-    fun foo(factorSid: String)
-
     fun getChallenge(
         challengeId: String,
         factorSid: String,

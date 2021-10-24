@@ -47,9 +47,6 @@ class ChallengesFragment : Fragment(), CardListener {
         binding.tipCard.btnDismiss.setOnClickListener { closeTipCard() }
         observeViewState()
         viewModel.getPendingChallenges()
-        binding.btnFoo.setOnClickListener {
-            viewModel.foo()
-        }
     }
 
     private fun setupRecyclerView() {
@@ -71,8 +68,8 @@ class ChallengesFragment : Fragment(), CardListener {
     }
 
     private fun observeHideTip() {
-        viewModel.getHideTipObservable().observe(viewLifecycleOwner, {hideTip->
-            if(!hideTip) {
+        viewModel.getHideTipObservable().observe(viewLifecycleOwner, { hideTip ->
+            if (!hideTip) {
                 binding.tipCard.root.visibility = View.VISIBLE
             }
         })
@@ -83,6 +80,7 @@ class ChallengesFragment : Fragment(), CardListener {
             when (viewState) {
                 is ChallengesViewState.Loading -> setStateLoading()
                 is ChallengesViewState.Error -> setStateError(viewState.message)
+                is ChallengesViewState.EmptyState -> showEmptyState()
                 is ChallengesViewState.Success -> showChallenges(viewState.challenges)
                 is ChallengesViewState.Logout -> logout()
             }
@@ -90,7 +88,17 @@ class ChallengesFragment : Fragment(), CardListener {
     }
 
     private fun setStateLoading() {
-        binding.swipeToRefreshContainer.isRefreshing = true
+        binding.run {
+            swipeToRefreshContainer.isRefreshing = true
+            emptyState.root.visibility = View.GONE
+        }
+    }
+
+    private fun showEmptyState() {
+        binding.run {
+            swipeToRefreshContainer.isRefreshing = false
+            emptyState.root.visibility = View.VISIBLE
+        }
     }
 
     private fun setStateError(message: String) {

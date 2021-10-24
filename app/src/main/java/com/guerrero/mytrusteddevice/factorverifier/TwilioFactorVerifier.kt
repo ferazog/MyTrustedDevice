@@ -93,17 +93,6 @@ class TwilioFactorVerifier(
         )
     }
 
-    override fun foo(factorSid: String) {
-        println("foo!!!")
-        println("factorsid: " + factorSid)
-        val verifyFactorPayload = VerifyPushFactorPayload(factorSid)
-        twilioVerify.verifyFactor(verifyFactorPayload, { factor ->
-            println("new factor: " + factor)
-        }, { exception ->
-            exception.printStackTrace()
-        })
-    }
-
     override fun getChallenge(
         challengeId: String,
         factorSid: String,

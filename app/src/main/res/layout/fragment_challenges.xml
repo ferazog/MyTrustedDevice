@@ -12,30 +12,26 @@
         android:padding="@dimen/padding_normal">
 
         <include
-            android:visibility="gone"
             android:id="@+id/tipCard"
-            layout="@layout/card_swipe_to_refresh_tip" />
+            layout="@layout/card_swipe_to_refresh_tip"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/emptyState"
+            layout="@layout/layout_empty_state"
+            tools:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="16dp"
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tipCard"
             tools:listitem="@layout/item_challenge" />
-
-        <Button
-            android:id="@+id/btnFoo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="foo"
-app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
