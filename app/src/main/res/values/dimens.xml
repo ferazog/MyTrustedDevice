@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+
+    <dimen name="padding_normal">24dp</dimen>
+
+    <dimen name="text_size_normal">16sp</dimen>
+
     <dimen name="logo_dimen">128dp</dimen>
+    <dimen name="ic_person_dimen">32dp</dimen>
+    <dimen name="ic_password_dimen">32dp</dimen>
 </resources>

@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">My Trusted Device</string>
+
+    <!-- home screen -->
     <string name="register_device">Register device</string>
+
     <!-- status values -->
     <string name="pending">Pending</string>
     <string name="approved">Approved</string>
     <string name="denied">Denied</string>
     <string name="expired">Expired</string>
+
+    <!-- register screen -->
+    <string name="register_description">Login to register this device:</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
