@@ -15,4 +15,12 @@
     <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+
+    <!-- challenges screen -->
+    <string name="expiration_date">Expiration Date</string>
+    <string name="open">Open</string>
+    <string name="tip_swipe_to_refresh">Tip: swipe to refresh the challenges.</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="no_challenges">No Challenges</string>
+    <string name="empty_state_description">Login challenges appear here.</string>
 </resources>

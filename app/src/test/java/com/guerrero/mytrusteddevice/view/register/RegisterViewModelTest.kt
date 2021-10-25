@@ -51,8 +51,8 @@ class RegisterViewModelTest {
         val pushToken = "pushToken"
         val accessToken = AccessToken("token", "serviceSid", "identity", "factorType")
         val registerInfo = RegisterInfo("identity", "factorSid")
-
         val slot = slot<(RegisterInfo) -> Unit>()
+
         coEvery {
             repository.getAccessToken(user)
         } returns accessToken
@@ -61,9 +61,11 @@ class RegisterViewModelTest {
         } answers {
             slot.captured(registerInfo)
         }
+
         runBlocking {
             viewModel.registerUser(user, pushToken)
         }
+
         verify(atLeast = 1) {
             viewStateObserver.onChanged(any<RegisterViewState.Loading>())
             viewStateObserver.onChanged(any<RegisterViewState.Success>())

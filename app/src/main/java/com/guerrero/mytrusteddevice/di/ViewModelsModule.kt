@@ -1,6 +1,7 @@
 package com.guerrero.mytrusteddevice.di
 
 import androidx.lifecycle.ViewModel
+import com.guerrero.mytrusteddevice.view.challenges.ChallengesViewModel
 import com.guerrero.mytrusteddevice.view.register.RegisterViewModel
 import dagger.Binds
 import dagger.Module
@@ -16,4 +17,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     abstract fun bindRegisterViewModel(viewModel: RegisterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChallengesViewModel::class)
+    abstract fun bindChallengesViewModel(viewModel: ChallengesViewModel): ViewModel
 }
