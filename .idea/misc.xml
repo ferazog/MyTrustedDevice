@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_beach.xml" value="0.13125" />
+        <entry key="app/src/main/res/drawable/ic_check.xml" value="0.13125" />
+        <entry key="app/src/main/res/drawable/ic_deny.xml" value="0.13125" />
         <entry key="app/src/main/res/drawable/ic_login.xml" value="0.1359375" />
+        <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/drawable/ic_password.xml" value="0.1359375" />
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.1359375" />
         <entry key="app/src/main/res/drawable/ic_smartphone.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/drawable/ic_tip.xml" value="0.13125" />
         <entry key="app/src/main/res/drawable/ic_verified_user.xml" value="0.16041666666666668" />
-        <entry key="app/src/main/res/layout/activity_details.xml" value="0.11510416666666666" />
+        <entry key="app/src/main/res/layout/activity_details.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
         <entry key="app/src/main/res/layout/card_swipe_to_refresh_tip.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/layout/fragment_challenges.xml" value="0.11979166666666667" />
@@ -18,6 +21,7 @@
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_challenge.xml" value="0.22" />
         <entry key="app/src/main/res/layout/layout_empty_state.xml" value="0.11510416666666666" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.175" />
       </map>
     </option>
   </component>

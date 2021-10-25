@@ -23,4 +23,19 @@
     <string name="dismiss">Dismiss</string>
     <string name="no_challenges">No Challenges</string>
     <string name="empty_state_description">Login challenges appear here.</string>
+    <string name="logout">Logout</string>
+
+    <!-- notifications -->
+    <string name="notification_channel_id" translatable="false">challenge_channel</string>
+    <string name="new_challenge">New challenge</string>
+    <string name="channel_name">Challenge</string>
+    <string name="channel_description">Receive challenges</string>
+
+    <!-- details screen -->
+    <string name="message">Message</string>
+    <string name="details">Details</string>
+    <string name="date">Date</string>
+    <string name="status">Status</string>
+    <string name="approve">Approve</string>
+    <string name="deny">Deny</string>
 </resources>

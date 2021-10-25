@@ -2,6 +2,7 @@ package com.guerrero.mytrusteddevice.di
 
 import androidx.lifecycle.ViewModel
 import com.guerrero.mytrusteddevice.view.challenges.ChallengesViewModel
+import com.guerrero.mytrusteddevice.view.details.ChallengeDetailsViewModel
 import com.guerrero.mytrusteddevice.view.register.RegisterViewModel
 import dagger.Binds
 import dagger.Module
@@ -22,4 +23,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(ChallengesViewModel::class)
     abstract fun bindChallengesViewModel(viewModel: ChallengesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChallengeDetailsViewModel::class)
+    abstract fun bindChallengeDetailsViewModel(viewModel: ChallengeDetailsViewModel): ViewModel
 }
