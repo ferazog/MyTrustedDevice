@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">My Trusted Device</string>
     <string name="register_device">Register device</string>
+    <!-- status values -->
+    <string name="pending">Pending</string>
+    <string name="approved">Approved</string>
+    <string name="denied">Denied</string>
+    <string name="expired">Expired</string>
 </resources>
